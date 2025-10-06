@@ -1,358 +1,264 @@
 # Crypto Portfolio MCP Server
 
-A comprehensive **read-only** cryptocurrency portfolio management MCP (Model Context Protocol) server for Binance, Coinbase, and Kraken. Get real-time portfolio analytics, risk metrics, market intelligence, and actionable insights through Claude Desktop or any MCP client.
+A comprehensive read-only cryptocurrency portfolio management server built on the Model Context Protocol (MCP). Supports Binance, Coinbase, and Kraken exchanges with 18+ analytics tools for portfolio tracking, risk assessment, and market intelligence.
 
-## 🚀 Features
+## Overview
 
-### Portfolio Management (Tools 1-5)
-- ✅ **Total Portfolio Value**: Aggregate value across all exchanges in USD
-- ✅ **All Balances**: Complete balance breakdown with USD values
-- ✅ **Portfolio Allocation**: Percentage breakdown by coin
-- ✅ **Current Prices**: Real-time prices for portfolio coins
-- ✅ **Portfolio P&L**: Profit/loss calculations (where available)
+This MCP server provides real-time cryptocurrency portfolio analytics through Claude Desktop or any MCP-compatible client. It offers read-only access to your exchange accounts, ensuring your funds remain secure while providing deep insights into your holdings.
 
-### Analytics & Performance (Tools 6-9)
-- ✅ **Biggest Movers**: Top winners and losers in your portfolio
-- ✅ **Portfolio Performance**: Historical performance metrics
+### Key Features
 
-### Price Alerts (Tools 10-11)
-- ✅ **Price Alert Check**: One-time price condition checks
-- ✅ **Multiple Alerts**: Batch alert checking
+- Multi-exchange portfolio aggregation (Binance, Coinbase, Kraken)
+- Real-time price tracking and alerts
+- Risk and diversification analysis
+- Market intelligence and sentiment indicators
+- Arbitrage opportunity detection
+- Portfolio performance metrics
 
-### Risk & Diversification (Tools 12-15)
-- ✅ **Diversification Score**: 1-10 rating with recommendations
-- ✅ **Volatility Risk**: Risk assessment based on holdings
-- ✅ **Stablecoin Ratio**: Cash position analysis
+## Quick Start
 
-### Market Intelligence (Tools 16-22)
-- ✅ **Arbitrage Opportunities**: Price differences across exchanges
-- ✅ **Liquidity Check**: 24h volume and sellability
-- ✅ **Fear & Greed Index**: Market sentiment indicator
+### Prerequisites
 
-### Portfolio Insights (Tools 23-26)
-- ✅ **Dust Detection**: Find small-value holdings
-- ✅ **Exchange Distribution**: Portfolio spread across exchanges
+- Python 3.10 or higher
+- API keys from supported exchanges (read-only permissions only)
+- Claude Desktop (optional, for AI-powered queries)
 
-### Practical Tools (Tools 27-31)
-- ✅ **Withdrawal Fees**: Calculate transfer costs
+### Installation
 
-## 📋 Prerequisites
-
-- **Python 3.10+**
-- **API Keys** from one or more exchanges:
-  - Binance (read-only permissions)
-  - Coinbase (view permissions)
-  - Kraken (query permissions)
-
-## 🔧 Installation
-
-### 1. Clone or Create Project Directory
-
+1. Clone the repository:
 ```bash
-cd /path/to/your/projects
-# Project should already exist at crypto-portfolio-mcp/
+git clone https://github.com/YOUR_USERNAME/crypto-portfolio-mcp.git
 cd crypto-portfolio-mcp
 ```
 
-### 2. Create Virtual Environment
-
+2. Run the setup script:
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+chmod +x setup.sh
+./setup.sh
 ```
 
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Set Up API Keys
-
-Copy the example environment file:
-
+3. Configure API credentials:
 ```bash
 cp .env.example .env
+# Edit .env with your exchange API keys
 ```
 
-Edit `.env` and add your API credentials:
-
-```env
-# Binance
-BINANCE_API_KEY=your_binance_api_key_here
-BINANCE_API_SECRET=your_binance_api_secret_here
-
-# Coinbase
-COINBASE_API_KEY=your_coinbase_api_key_here
-COINBASE_API_SECRET=your_coinbase_api_secret_here
-
-# Kraken
-KRAKEN_API_KEY=your_kraken_api_key_here
-KRAKEN_API_SECRET=your_kraken_api_secret_here
-```
-
-**Important**: Only add keys for exchanges you use. The server will automatically detect which exchanges are configured.
-
-### 5. Create Logs Directory
-
+4. Test the configuration:
 ```bash
-mkdir -p logs
+source venv/bin/activate
+python test_config.py
 ```
 
-## 🔐 API Key Setup Guide
+### Claude Desktop Configuration
 
-### Binance
+Add to your Claude Desktop configuration file:
 
-1. Log in to [Binance](https://www.binance.com)
-2. Go to **API Management**
-3. Create a new API key
-4. **Permissions**: Enable only **"Read"** permissions (disable trading/withdrawal)
-5. Copy API Key and Secret to `.env`
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 
-### Coinbase
-
-1. Log in to [Coinbase](https://www.coinbase.com)
-2. Go to **Settings** → **API**
-3. Create a new API key
-4. **Permissions**: Enable only **"wallet:accounts:read"** and **"wallet:transactions:read"**
-5. Copy API Key and Secret to `.env`
-
-### Kraken
-
-1. Log in to [Kraken](https://www.kraken.com)
-2. Go to **Settings** → **API**
-3. Generate new key
-4. **Permissions**: Enable only **"Query Funds"** and **"Query Open Orders & Trades"**
-5. Copy API Key and Private Key to `.env`
-
-## 📱 Usage with Claude Desktop
-
-### 1. Configure Claude Desktop
-
-Add to your Claude Desktop MCP settings file:
-
-**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "crypto-portfolio": {
-      "command": "/path/to/crypto-portfolio-mcp/venv/bin/python",
+      "command": "/absolute/path/to/crypto-portfolio-mcp/venv/bin/python",
       "args": ["-m", "src.server"],
-      "cwd": "/path/to/crypto-portfolio-mcp"
+      "cwd": "/absolute/path/to/crypto-portfolio-mcp"
     }
   }
 }
 ```
 
-### 2. Restart Claude Desktop
+Replace `/absolute/path/to/` with your actual installation path.
 
-Completely quit and restart Claude Desktop.
+## API Key Setup
 
-### 3. Start Using Tools
+### IMPORTANT: Read-Only Permissions Only
 
-Ask Claude questions like:
+Create API keys with read/view permissions only. Never enable trading or withdrawal permissions.
+
+### Binance
+
+1. Log in to Binance and navigate to API Management
+2. Create a new API key with only "Read" permissions
+3. Copy the API Key and Secret to your `.env` file
+
+### Coinbase
+
+1. Log in to Coinbase and go to Settings > API
+2. Create a new API key with only "wallet:accounts:read" and "wallet:transactions:read"
+3. Copy credentials to `.env`
+
+### Kraken
+
+1. Log in to Kraken and go to Settings > API
+2. Generate a new key with only "Query Funds" and "Query Open Orders & Trades"
+3. Copy credentials to `.env`
+
+## Available Tools
+
+The server provides 18 MCP tools across 7 categories:
+
+### Portfolio Management (5 tools)
+
+- `get_total_portfolio_value` - Aggregate portfolio value across all exchanges
+- `get_all_balances` - Detailed balance breakdown with USD values
+- `get_portfolio_allocation` - Asset allocation percentages
+- `get_current_prices` - Real-time cryptocurrency prices
+- `calculate_portfolio_pnl` - Profit/loss calculations
+
+### Analytics (2 tools)
+
+- `get_biggest_movers` - Top gaining and losing assets
+- `get_portfolio_performance` - Historical performance metrics
+
+### Price Alerts (2 tools)
+
+- `check_price_alert` - Single price condition monitoring
+- `check_multiple_alerts` - Batch alert checking
+
+### Risk Management (3 tools)
+
+- `get_diversification_score` - Portfolio diversification rating (1-10)
+- `get_volatility_risk` - Risk assessment based on asset volatility
+- `get_stablecoin_ratio` - Percentage in stablecoins
+
+### Market Intelligence (3 tools)
+
+- `check_arbitrage_opportunities` - Cross-exchange price differences
+- `check_liquidity` - Trading volume and liquidity analysis
+- `get_fear_greed_index` - Crypto market sentiment indicator
+
+### Portfolio Insights (2 tools)
+
+- `detect_dust` - Identify small-value holdings
+- `get_exchange_distribution` - Portfolio distribution across exchanges
+
+### Practical Tools (1 tool)
+
+- `calculate_withdrawal_fees` - Estimate transfer costs
+
+## Usage Examples
+
+### With Claude Desktop
+
+After configuration, ask Claude natural language questions:
 
 ```
-"What's my total portfolio value?"
+"What is my total portfolio value?"
 "Show me my portfolio allocation"
 "What are the biggest movers in my portfolio today?"
-"Check if BTC is above $50,000"
-"What's my diversification score?"
-"Are there any arbitrage opportunities between my exchanges?"
-"What's the current crypto fear & greed index?"
+"Is Bitcoin above $50,000?"
+"What is my diversification score?"
+"Are there any arbitrage opportunities?"
+"What is the current crypto fear and greed index?"
 ```
 
-## 🛠️ Available Tools
+## Architecture
 
-### Portfolio Basics
-
-1. **get_total_portfolio_value** - Total value across all exchanges
-2. **get_all_balances** - All coin balances with USD values
-3. **get_portfolio_allocation** - Allocation breakdown by percentage
-4. **get_current_prices** - Real-time prices for coins
-5. **calculate_portfolio_pnl** - Profit/loss calculation
-
-### Analytics
-
-6. **get_biggest_movers** - Top gainers and losers
-7. **get_portfolio_performance** - Performance metrics over time
-
-### Price Alerts
-
-10. **check_price_alert** - Check single price condition
-11. **check_multiple_alerts** - Batch check multiple alerts
-
-### Risk Management
-
-12. **get_diversification_score** - Portfolio diversification rating (1-10)
-13. **get_volatility_risk** - Risk assessment
-14. **get_stablecoin_ratio** - Stablecoin percentage
-
-### Market Intelligence
-
-19. **check_arbitrage_opportunities** - Price differences across exchanges
-20. **check_liquidity** - 24h volume and liquidity ratings
-21. **get_fear_greed_index** - Market sentiment (0-100)
-
-### Portfolio Insights
-
-23. **detect_dust** - Find small-value holdings (<$10)
-24. **get_exchange_distribution** - Portfolio spread by exchange
-
-### Practical Tools
-
-29. **calculate_withdrawal_fees** - Withdrawal cost calculator
-
-## 🧪 Testing Without API Keys
-
-Enable mock mode for testing:
-
-```env
-MOCK_MODE=true
+```
+crypto-portfolio-mcp/
+├── src/
+│   ├── server.py              # Main MCP server
+│   ├── exchanges/             # Exchange client implementations
+│   │   ├── base_exchange.py
+│   │   ├── binance_client.py
+│   │   ├── coinbase_client.py
+│   │   └── kraken_client.py
+│   ├── analytics/             # Analytics engines
+│   │   ├── portfolio.py
+│   │   ├── risk.py
+│   │   └── market.py
+│   └── utils/                 # Utilities
+│       ├── config.py
+│       └── helpers.py
+├── .github/                   # GitHub templates
+├── requirements.txt
+├── setup.sh
+├── test_config.py
+└── .env.example
 ```
 
-This will return sample data without making real API calls.
+## Technical Details
 
-## 🔍 Troubleshooting
+- **Exchange API Integration:** CCXT library for unified exchange access
+- **Caching:** In-memory with configurable TTL (30s prices, 60s balances)
+- **Rate Limiting:** Per-exchange limits (Binance: 15/s, Coinbase: 8/s, Kraken: 1/s)
+- **Error Handling:** Automatic retry with exponential backoff (3 attempts)
+- **Security:** Read-only operations, no trading or withdrawal capabilities
+
+## Configuration
+
+Environment variables in `.env`:
+
+```bash
+# Exchange API credentials
+BINANCE_API_KEY=your_binance_api_key
+BINANCE_API_SECRET=your_binance_secret
+
+COINBASE_API_KEY=your_coinbase_api_key
+COINBASE_API_SECRET=your_coinbase_secret
+
+KRAKEN_API_KEY=your_kraken_api_key
+KRAKEN_API_SECRET=your_kraken_secret
+
+# Optional settings
+MOCK_MODE=false
+PRICE_CACHE_DURATION=30
+BALANCE_CACHE_DURATION=60
+```
+
+## Troubleshooting
 
 ### "No exchanges initialized"
-
-**Solution**: Check that your API keys are correctly set in `.env` file.
+Check that API keys are correctly set in `.env` file.
 
 ### "Failed to initialize [Exchange]"
-
-**Possible causes**:
-- Invalid API credentials
-- API key permissions not set to read-only
-- Network connectivity issues
-- Exchange API downtime
-
-**Solution**:
-1. Verify API key and secret are correct
-2. Check API key has proper read permissions
-3. Test network connection
-4. Check exchange status page
+Verify API key permissions are set to read-only and credentials are correct.
 
 ### Rate Limiting Errors
+The server implements automatic rate limiting and retry logic.
 
-The server implements automatic rate limiting for each exchange:
-- **Binance**: 15 requests/second
-- **Coinbase**: 8 requests/second
-- **Kraken**: 1 request/second
+## Security
 
-If you still hit rate limits, the server will automatically retry with exponential backoff.
+**Important Security Practices:**
 
-### Cache Issues
+1. Use read-only API keys exclusively
+2. Never commit `.env` file to version control
+3. Enable IP whitelisting on exchange API keys (recommended)
+4. Rotate API keys periodically
+5. Keep dependencies updated
 
-Clear the cache by restarting the server. Cache TTLs:
-- **Prices**: 30 seconds
-- **Balances**: 60 seconds
+This server cannot execute trades or withdrawals - it only reads portfolio data.
 
-## 📊 Example Outputs
+## Contributing
 
-### Total Portfolio Value
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-```json
-{
-  "total_usd": 45230.50,
-  "by_exchange": {
-    "binance": 25000.00,
-    "coinbase": 15230.50,
-    "kraken": 5000.00
-  },
-  "timestamp": "2025-10-06T10:30:00"
-}
-```
+Contributions must:
+- Follow existing code patterns
+- Include documentation
+- Maintain security best practices
+- Never add trading/withdrawal functionality
 
-### Diversification Score
+## License
 
-```json
-{
-  "score": 7.5,
-  "rating": "Good",
-  "warnings": [],
-  "recommendations": "Portfolio is well-diversified",
-  "metrics": {
-    "hhi": 0.15,
-    "max_allocation": 0.25,
-    "num_coins": 8
-  }
-}
-```
+MIT License - See [LICENSE](LICENSE) file for details.
 
-### Fear & Greed Index
+## Disclaimer
 
-```json
-{
-  "value": 65,
-  "classification": "Greed",
-  "description": "Greed - Bullish sentiment",
-  "timestamp": "2025-10-06T10:30:00"
-}
-```
+This software is for informational purposes only and does not constitute financial advice. Users are solely responsible for their investment decisions. The server operates in read-only mode and cannot execute trades or transfers.
 
-## 🔒 Security Best Practices
+## Support
 
-1. ✅ **Read-Only Keys**: Only create API keys with read/view permissions
-2. ✅ **No Trading**: This server cannot execute trades or withdrawals
-3. ✅ **Secure Storage**: Keep `.env` file secure and never commit to git
-4. ✅ **IP Whitelisting**: Consider IP restrictions on exchange API keys
-5. ✅ **Key Rotation**: Periodically rotate your API keys
-
-## 🚦 Rate Limits
-
-The server implements conservative rate limiting:
-
-| Exchange | Public API | Private API | Server Limit |
-|----------|-----------|-------------|--------------|
-| Binance  | 1200/min  | 1200/min    | 15/sec       |
-| Coinbase | 10/sec    | 10/sec      | 8/sec        |
-| Kraken   | Variable  | 1/sec       | 1/sec        |
-
-## 📝 Logging
-
-Logs are written to:
-- `logs/crypto_mcp.log` - Detailed application logs
-- Console output - Info level and above
-
-## 🤝 Contributing
-
-This is a read-only portfolio management tool. All features focus on analytics and insights, never trading or fund movement.
-
-## 📜 License
-
-MIT License - See LICENSE file for details.
-
-## ⚠️ Disclaimer
-
-This software is for informational purposes only. It does not constitute financial advice. Always verify portfolio values and metrics independently before making investment decisions.
-
-The server operates in **read-only mode** and cannot execute trades, transfers, or withdrawals.
-
-## 🆘 Support
-
-For issues, questions, or feature requests:
-1. Check the Troubleshooting section above
-2. Review exchange API documentation
+For issues or questions:
+1. Check the troubleshooting section above
+2. Review [CONTRIBUTING.md](CONTRIBUTING.md)
 3. Check server logs in `logs/crypto_mcp.log`
+4. Open an issue on GitHub
 
-## 🗺️ Roadmap
+## Built With
 
-Future enhancements may include:
-- Historical performance tracking with local database
-- Tax loss harvesting recommendations
-- Rebalancing suggestions with specific trade instructions
-- Email/webhook alerts for price conditions
-- Portfolio comparison with market cap weights
-- DCA vs lump sum calculators
-
----
-
-**Built with**:
-- [CCXT](https://github.com/ccxt/ccxt) - Unified exchange API
+- [CCXT](https://github.com/ccxt/ccxt) - Cryptocurrency exchange trading library
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) - Model Context Protocol
 - Python 3.10+
-
-**Status**: Production-ready ✅
