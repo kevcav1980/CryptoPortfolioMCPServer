@@ -27,8 +27,8 @@ This MCP server provides real-time cryptocurrency portfolio analytics through Cl
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/crypto-portfolio-mcp.git
-cd crypto-portfolio-mcp
+git clone https://github.com/lev-corrupted/CryptoPortfolioMCPServer.git
+cd CryptoPortfolioMCPServer
 ```
 
 2. Run the setup script:
@@ -61,9 +61,9 @@ Add to your Claude Desktop configuration file:
 {
   "mcpServers": {
     "crypto-portfolio": {
-      "command": "/absolute/path/to/crypto-portfolio-mcp/venv/bin/python",
+      "command": "/absolute/path/to/CryptoPortfolioMCPServer/venv/bin/python",
       "args": ["-m", "src.server"],
-      "cwd": "/absolute/path/to/crypto-portfolio-mcp"
+      "cwd": "/absolute/path/to/CryptoPortfolioMCPServer"
     }
   }
 }
@@ -157,7 +157,7 @@ After configuration, ask Claude natural language questions:
 ## Architecture
 
 ```
-crypto-portfolio-mcp/
+CryptoPortfolioMCPServer/
 ├── src/
 │   ├── server.py              # Main MCP server
 │   ├── exchanges/             # Exchange client implementations
